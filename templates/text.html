@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>WowLabz Technical Round App</title>
+{% endblock %}
+
+{% block title %}
+TEXT ANALYSIS
+{% endblock %}
+
+{% block body %}
+<div class="row">
+    <div class="col-12 d-flex justify-content-center align-items-center">
+        <form class="col-10" action="/text" method="POST">
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" for="username">Name</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="username" id="username"" placeholder="Enter name">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" for="author">Favourite Author</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="author" id="author"" placeholder="Your favourite author">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label" for="sample">Favourite Passage</label>
+                <div class="col-sm-10">
+                    <textarea class="form-control" name="sample" id="sample"></textarea>
+                    <small id="sample_more" class="form-text text-muted">The favourite passage from the author's book</small>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-3">
+                    <input class="btn btn-primary w-100" type="submit" name="Analyze!">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% if data %}
+<div class="row">
+    <div>
+        <div class="card">
+            <div class="card-header" style="padding-bottom: 0;">
+                <ul class="nav nav-tabs card-header-tab">
+                    <li class="nav-item active"><a class="nav-link active" data-toggle="tab" href="#home">Summary</a></li>
+                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#menu1">Text Segmented</a></li>
+                  </ul>
+              </div>
+            <div class="card-body">
+                <div class="tab-content">
+                    <div id="home" class="tab-pane container fade show active">
+                        <h6 class="card-title">Predicted Title</h6>
+                        <h5 class="card-title" style="text-transform: capitalize;">{{ data.title }}</h5>
+                        <h6 class="card-title">Summary</h6>
+                        <p>{{ data.summary }}</p>
+                        <h6 class="card-title">Paragraph Sentiment</h6>
+                        <p>
+                            {{ data.sentiment_summary }}
+                        </p>
+                    </div>
+                    <div id="menu1" class="tab-pane container fade">
+                        <h6 class="card-title">Text Segmentation</h6>
+                        <ul class="list-group list-group-flush">
+                            {% for s in data.segments %}
+                                <li class="list-group-item">{{ s }}</li>
+                            {% endfor %}
+                          </ul>
+                    </div>
+                  </div>
+            </div>
+          </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

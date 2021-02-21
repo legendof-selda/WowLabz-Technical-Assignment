@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>WowLabz Technical Round App</title>
+{% endblock %}
+
+{% block title %}
+HOME
+{% endblock %}
+
+{% block body %}
+<header class="bg-light header_7">
+    <div class="container px-xl-0 relative text-center text-md-left">
+        <div class="mw-570 pt-230 pb-165 inner">
+            <h1>Stalin's Technical Assignment</h1>
+            <div class="mt-20 mw-500 color-heading f-18 medium op-7 text-adaptive">
+                <div>
+                    Perform text analysis and sleep analysis here!
+                </div>
+            </div>
+            <div class="mt-70 d-block d-sm-flex flex-wrap justify-content-center justify-content-md-start buttons">
+                <a href="/sleep" class="btn btn-info btn-lg btn-sp">Sleep Analysis</a>
+                <a href="/text" class="btn btn-light btn-lg btn-sp">Text Analysis</a>
+            </div>
+        </div>
+    </div>
+    </div>
+</header>
+{% endblock %}
